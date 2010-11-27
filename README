@@ -1,0 +1,67 @@
+# m14tIp2Location plugin (for symfony 1.4) #
+
+The `m14tIp2Location` is a symfony plugin that provides geo-location
+lookup features using http://www.ipinfodb.com/
+
+## Installation ##
+
+  * Install the plugin (via a package)
+
+        symfony plugin:install m14tIp2Location
+
+
+  * Activate the plugin in the `config/ProjectConfiguration.class.php`
+
+        [php]
+        class ProjectConfiguration extends sfProjectConfiguration
+        {
+          public function setup()
+          {
+            $this->enablePlugins(array(
+              'sfDoctrinePlugin',
+              'm14tIp2Location',
+              '...'
+            ));
+          }
+        }
+
+  * Set your API key in apps/<your_app_name>/config/app.yml
+
+        all:
+          ipinfodb:
+            api_key: ___xxx___
+
+  * Clear you cache
+
+        symfony cc
+
+## Example Usage ##
+
+  * The following PHP:
+ 
+        [php] 
+        $loc = new ip2location('74.125.45.100');
+        print_r($loc);
+
+  * Will generate the following responce:
+        ip2location Object
+        (
+            [data:ip2location:private] => Array (
+                    [ip] => 74.125.45.100
+                    [Status] => OK
+                    [CountryCode] => US
+                    [CountryName] => United States
+                    [RegionCode] => 06
+                    [RegionName] => California
+                    [City] => Mountain View
+                    [ZipPostalCode] => 94043
+                    [Latitude] => 37.4192
+                    [Longitude] => -122.057
+                    [Timezone] => 0
+                    [Gmtoffset] => -28800
+                    [Dstoffset] => 0
+                    [TimezoneName] => America/Los_Angeles
+                    [Isdst] => 0
+                    [Ip] => 74.125.45.100
+            )
+        )
