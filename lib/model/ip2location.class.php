@@ -12,6 +12,11 @@ class ip2location {
   private $data = array();
   
   function __construct($ip) {
+    //-- If ip = 127.0.0.1, then use the server's IP
+    if ( '127.0.0.1' == $ip ) {
+      $ip = $this->getIp();
+    }
+    
     $this->ip = $ip;
     
     $this->fetchInfo($ip);
@@ -51,5 +56,14 @@ class ip2location {
         return $response;
       break;
     } 
+  }
+  
+  private function getIp() {
+    $url = "http://jsonip.appspot.com/";
+    $session = curl_init($url);
+    curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
+    $response = curl_exec($session);
+    $phpObj =  json_decode($response);
+    return $phpObj->ip;
   }
 }
