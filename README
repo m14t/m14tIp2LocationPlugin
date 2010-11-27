@@ -26,6 +26,8 @@ lookup features using http://www.ipinfodb.com/
           }
         }
 
+  * Sign-up for an API key at: http://www.ipinfodb.com/register.php
+
   * Set your API key in apps/<your_app_name>/config/app.yml
 
         all:
