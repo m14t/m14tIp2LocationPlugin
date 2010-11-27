@@ -7,7 +7,8 @@ lookup features using http://www.ipinfodb.com/
 
   * Install the plugin (via a package)
 
-        symfony plugin:install m14tIp2Location
+        cd plugins/
+        git clone git://github.com/m14t/m14tIp2LocationPlugin.git
 
 
   * Activate the plugin in the `config/ProjectConfiguration.class.php`
@@ -38,8 +39,8 @@ lookup features using http://www.ipinfodb.com/
 ## Example Usage ##
 
   * The following PHP:
- 
-        [php] 
+
+        [php]
         $loc = new ip2location('74.125.45.100');
         print_r($loc);
 
