@@ -50,9 +50,10 @@ class ip2location {
 
     switch ( $format ){
       case 'json':
-        $phpObj =  json_decode($response);
-        foreach ( $phpObj as $k=>$v ) {
-          $this->$k = $v;
+        if ( !is_null($phpObj = json_decode($response)) ) {
+          foreach ( $phpObj as $k=>$v ) {
+            $this->$k = $v;
+          }
         }
         return;
         break;
@@ -68,6 +69,6 @@ class ip2location {
     curl_setopt($session, CURLOPT_RETURNTRANSFER, true);
     $response = curl_exec($session);
     $phpObj =  json_decode($response);
-    return $phpObj->ip;
+    return (is_null($phpObj) ? false : $phpObj->ip);
   }
 }
